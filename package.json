@@ -1,0 +1,77 @@
+{
+    "name": "@parsify/math",
+    "version": "0.0.4",
+    "description": "Parsify plugin for mathematical expressions & unit conversions",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**/*"
+    ],
+    "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
+    "bugs": {
+        "url": "https://github.com/parsify/math/issues"
+    },
+    "scripts": {
+        "prebuild": "del-cli dist",
+        "esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
+        "cjs": "tsc --module commonjs",
+        "build": "npm run esm && npm run cjs",
+        "test": "xo && nyc ava",
+        "prepublishOnly": "npm run build"
+    },
+    "engines": {
+        "node": ">=10"
+    },
+    "license": "MIT",
+    "repository": "parsify/math",
+    "homepage": "https://github.com/parsify/math",
+    "keywords": [
+        "parsify",
+        "@parsify/math",
+        "parsify-plugin",
+        "plugin",
+        "expression-parser",
+        "parser",
+        "expression",
+        "math",
+        "math-expressions",
+        "mathjs"
+    ],
+    "devDependencies": {
+        "@akepinski/tsconfig": "0.0.2",
+        "@types/mathjs": "^6.0.4",
+        "@typescript-eslint/eslint-plugin": "^2.19.0",
+        "@typescript-eslint/parser": "^2.19.0",
+        "ava": "^3.2.0",
+        "coveralls": "^3.0.9",
+        "cpy-cli": "^3.0.0",
+        "del-cli": "^3.0.0",
+        "eslint-config-xo-typescript": "^0.26.0",
+        "nyc": "^15.0.0",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.7.5",
+        "xo": "^0.25.3"
+    },
+    "sideEffects": false,
+    "ava": {
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "xo": {
+        "extends": "xo-typescript",
+        "extensions": [
+            "ts"
+        ],
+        "ignores": [
+            "./test.ts"
+        ]
+    },
+    "dependencies": {
+        "mathjs": "^6.6.0"
+    }
+}
