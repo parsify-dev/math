@@ -23,6 +23,11 @@ test('units', async t => {
     t.is(await parsifyMathPlugin()('12 hours to minutes'), '720 minutes');
 });
 
+test('currency conversion', async t => {
+    t.regex(await (await parsifyMathPlugin({enableCurrencyConversion: true})('10 USD to PLN')).toString(), /PLN/);
+    t.regex(await (await parsifyMathPlugin({enableCurrencyConversion: true})('5 EUR + 2 * 3 EUR in USD')).toString(), /USD/);
+});
+
 test('if an error occurs, just output the expression', async t => {
     t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
 });
