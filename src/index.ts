@@ -1,9 +1,19 @@
 import {parser} from 'mathjs';
 
+import {fetchAndImportCurrencies} from '../utils/fetcher';
+
+interface Options {
+	enableCurrencyConversion?: boolean;
+}
+
 const mathParser = parser();
 
-export default () => async (expression: string): Promise<string | number> => {
+export default (options: Options = {}) => async (expression: string): Promise<string | number> => {
 	try {
+		if (options.enableCurrencyConversion) {
+			await fetchAndImportCurrencies();
+		}
+
 		const result = await mathParser.evaluate(expression);
 
 		if (typeof result === 'object') {
