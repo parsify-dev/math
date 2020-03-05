@@ -1,6 +1,6 @@
 {
     "name": "@parsify/math",
-    "version": "0.0.5",
+    "version": "0.1.0",
     "description": "Parsify plugin for mathematical expressions & unit conversions",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -14,7 +14,7 @@
     },
     "scripts": {
         "prebuild": "del-cli dist",
-        "esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
+        "esm": "tsc --module esnext && cpy dist/index.js dist/src --rename index.esm.js",
         "cjs": "tsc --module commonjs",
         "build": "npm run esm && npm run cjs",
         "test": "xo && nyc ava",
@@ -72,7 +72,6 @@
         ]
     },
     "dependencies": {
-        "isomorphic-unfetch": "^3.0.0",
         "mathjs": "^6.6.1"
     }
 }
