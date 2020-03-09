@@ -16,6 +16,13 @@ test('advanced operations', async t => {
     t.is(await parsifyMathPlugin()('x + 3'), '6.5');
 });
 
+test('word operators', async t => {
+    t.is(await parsifyMathPlugin()('10 times 2'), '20');
+    t.is(await parsifyMathPlugin()('2 minus 1'), '1');
+    t.is(await parsifyMathPlugin()('10 plus 5'), '15');
+    t.is(await parsifyMathPlugin()('6 divided by 3'), '2');
+});
+
 test('units', async t => {
     t.is(await parsifyMathPlugin()('2 inch to cm'), '5.08 cm');
     t.is(await parsifyMathPlugin()('10 kilograms to g'), '10000 g');
