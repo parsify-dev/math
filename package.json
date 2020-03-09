@@ -1,6 +1,6 @@
 {
     "name": "@parsify/math",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Parsify plugin for mathematical expressions & unit conversions",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -41,8 +41,8 @@
     "devDependencies": {
         "@akepinski/tsconfig": "0.0.2",
         "@types/mathjs": "^6.0.4",
-        "@typescript-eslint/eslint-plugin": "^2.22.0",
-        "@typescript-eslint/parser": "^2.22.0",
+        "@typescript-eslint/eslint-plugin": "^2.23.0",
+        "@typescript-eslint/parser": "^2.23.0",
         "ava": "^3.5.0",
         "coveralls": "^3.0.9",
         "cpy-cli": "^3.1.0",
