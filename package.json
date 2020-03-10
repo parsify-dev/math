@@ -1,6 +1,6 @@
 {
     "name": "@parsify/math",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Parsify plugin for mathematical expressions & unit conversions",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
