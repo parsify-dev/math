@@ -30,6 +30,20 @@ test('units', async t => {
     t.is(await parsifyMathPlugin()('12 hours to minutes'), '720 minutes');
 });
 
+test('additional options', async t => {
+    const result = await parsifyMathPlugin({
+        precision: 16,
+        customUnits: {
+            knot: {
+                definition: '0.514444m/s',
+                aliases: ['knots']
+            }
+        }
+    })('45 mile/hour to knots');
+
+    t.is(result, '39.10396466865198 knots');
+});
+
 test('if an error occurs, just output the expression', async t => {
     t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
 });
