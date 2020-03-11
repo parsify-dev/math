@@ -51,7 +51,7 @@
         "nyc": "^15.0.0",
         "ts-node": "^8.6.2",
         "typescript": "^3.8.3",
-        "xo": "^0.27.2"
+        "xo": "^0.28.0"
     },
     "sideEffects": false,
     "ava": {
@@ -66,9 +66,6 @@
         "extends": "xo-typescript",
         "extensions": [
             "ts"
-        ],
-        "ignores": [
-            "./test.ts"
         ]
     },
     "dependencies": {
