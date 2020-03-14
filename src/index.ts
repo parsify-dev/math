@@ -29,3 +29,7 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 		return expression;
 	}
 };
+
+export {
+	createUnit
+};
