@@ -9,12 +9,7 @@ interface Options {
 	};
 }
 
-interface MathObject {
-	result: any;
-	formattedResult: string;
-}
-
-export default ({precision = 4, customUnits}: Options = {}) => async (expression: string): Promise<MathObject | string> => {
+export default ({precision = 4, customUnits}: Options = {}) => async (expression: string): Promise<string> => {
 	try {
 		// Replace word operators with sign ones
 		expression = expression.replace(/plus|and|with/, '+');
@@ -29,10 +24,7 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 
 		const result = await mathParser.evaluate(expression);
 
-		return {
-			result,
-			formattedResult: format(result, {precision})
-		};
+		return format(result, {precision});
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 		return expression;
