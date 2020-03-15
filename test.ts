@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import parsifyMathPlugin, {createUnit} from './src';
+import parsifyMathPlugin, {mathParser} from './src';
 
 test('basic operations', async t => {
 	t.is(await parsifyMathPlugin()('1+2'), '3');
@@ -44,16 +44,10 @@ test('additional options', async t => {
 	t.is(result, '39.10396466865198 knots');
 });
 
-test('createUnit function', async t => {
-	createUnit({
-		horsepower: {
-			definition: '0.7457 kilowatt',
-			aliases: ['hp']
-		}
-	}, {override: true});
-	const result = await parsifyMathPlugin()('10 hp in kW');
+test('exports parser instance', async t => {
+	await parsifyMathPlugin()('x=3');
 
-	t.is(result, '7.457 kW');
+	t.is(mathParser.get('x'), 3);
 });
 
 test('if an error occurs, just output the expression', async t => {

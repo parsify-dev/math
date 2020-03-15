@@ -12,10 +12,11 @@ interface Options {
 export default ({precision = 4, customUnits}: Options = {}) => async (expression: string): Promise<string> => {
 	try {
 		// Replace word operators with sign ones
-		expression = expression.replace('plus', '+');
-		expression = expression.replace('minus', '-');
-		expression = expression.replace('times', '*');
+		expression = expression.replace(/plus|and|with/, '+');
+		expression = expression.replace(/minus|subtract|without/, '-');
+		expression = expression.replace(/times|multiplied by/, '*');
 		expression = expression.replace('divided by', '/');
+		expression = expression.replace('mod', '%');
 
 		if (customUnits) {
 			createUnit(customUnits, {override: true});
@@ -31,5 +32,5 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 };
 
 export {
-	createUnit
+	mathParser
 };
