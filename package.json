@@ -1,6 +1,6 @@
 {
     "name": "@parsify/math",
-    "version": "0.1.7",
+    "version": "0.2.0",
     "description": "Parsify plugin for mathematical expressions & unit conversions",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -40,18 +40,18 @@
     ],
     "devDependencies": {
         "@akepinski/tsconfig": "0.0.2",
-        "@types/mathjs": "^6.0.4",
-        "@typescript-eslint/eslint-plugin": "^2.23.0",
-        "@typescript-eslint/parser": "^2.23.0",
-        "ava": "^3.5.0",
-        "coveralls": "^3.0.9",
+        "@types/mathjs": "^6.0.5",
+        "@typescript-eslint/eslint-plugin": "^2.27.0",
+        "@typescript-eslint/parser": "^2.27.0",
+        "ava": "^3.6.0",
+        "coveralls": "^3.0.11",
         "cpy-cli": "^3.1.0",
         "del-cli": "^3.0.0",
-        "eslint-config-xo-typescript": "^0.26.0",
-        "nyc": "^15.0.0",
-        "ts-node": "^8.6.2",
+        "eslint-config-xo-typescript": "^0.27.0",
+        "nyc": "^15.0.1",
+        "ts-node": "^8.8.2",
         "typescript": "^3.8.3",
-        "xo": "^0.28.0"
+        "xo": "^0.29.0"
     },
     "sideEffects": false,
     "ava": {
@@ -66,9 +66,14 @@
         "extends": "xo-typescript",
         "extensions": [
             "ts"
-        ]
+        ],
+        "rules": {
+            "@typescript-eslint/prefer-readonly-parameter-types": "off",
+            "@typescript-eslint/restrict-template-expressions": "off",
+            "@typescript-eslint/no-unsafe-return": "off"
+        }
     },
     "dependencies": {
-        "mathjs": "^6.6.1"
+        "mathjs": "^6.6.3"
     }
 }
