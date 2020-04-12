@@ -30,6 +30,24 @@ test('units', async t => {
 	t.is(await parsifyMathPlugin()('12 hours to minutes'), '720 minutes');
 });
 
+test('percentage value', async t => {
+	t.is(await parsifyMathPlugin()('5% of 100'), '5');
+	t.is(await parsifyMathPlugin()('(5 / 2)% of sin(2)'), '0.02273');
+	t.is(await parsifyMathPlugin()('5% of 100 * 5'), '25');
+});
+
+test('adding percentage', async t => {
+	t.is(await parsifyMathPlugin()('5% on 30'), '31.5');
+	t.is(await parsifyMathPlugin()('(5 * 2)% on 30/3'), '11');
+	t.is(await parsifyMathPlugin()('5% on cos(30)'), '0.162');
+});
+
+test('subtracting percentage', async t => {
+	t.is(await parsifyMathPlugin()('6% off 40'), '37.6');
+	t.is(await parsifyMathPlugin()('tan(6)% off 40/2'), '20.06');
+	t.is(await parsifyMathPlugin()('6% off 40 + pi'), '40.55');
+});
+
 test('additional options', async t => {
 	const result = await parsifyMathPlugin({
 		precision: 16,
