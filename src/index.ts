@@ -21,7 +21,7 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 		expression = expression.replace('mod', '%');
 
 		// Percentage operations
-		if (/off?|on/.exec(expression)) {
+		if (/ off? | on /.exec(expression)) {
 			const expressionArray = expression.split(' ');
 			const number = (name: string) => expressionArray.slice(0, getElementIndex(expressionArray, name)).join(' ').replace('%', '');
 			const total = (name: string) => expressionArray.slice(getElementIndex(expressionArray, name) + 1).join(' ');
