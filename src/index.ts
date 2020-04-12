@@ -1,5 +1,7 @@
 import {parser, format, createUnit, UnitDefinition} from 'mathjs';
 
+import {getElementIndex} from './utils/get-element-index';
+
 const mathParser = parser();
 
 interface Options {
@@ -17,6 +19,26 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 		expression = expression.replace(/times|multiplied by/, '*');
 		expression = expression.replace('divided by', '/');
 		expression = expression.replace('mod', '%');
+
+		// Percentage operations
+		if (/off?|on/.exec(expression)) {
+			const expressionArray = expression.split(' ');
+			const number = (name: string) => expressionArray.slice(0, getElementIndex(expressionArray, name)).join(' ').replace('%', '');
+			const total = (name: string) => expressionArray.slice(getElementIndex(expressionArray, name) + 1).join(' ');
+
+			if (/of /.exec(expression)) {
+				expression = `((${number('of')}) / 100) * (${total('of')})`;
+			}
+
+			if (/on/i.exec(expression)) {
+				expression = `(${total('on')}) + ((${number('on')}) / 100) * (${total('on')})`;
+			}
+
+			if (/off/i.exec(expression)) {
+				expression = `(${total('off')}) - ((${number('off')}) / 100) * (${total('off')})`;
+				console.log(expression);
+			}
+		}
 
 		if (customUnits) {
 			createUnit(customUnits, {override: true});
