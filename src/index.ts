@@ -36,7 +36,6 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 
 			if (/off/i.exec(expression)) {
 				expression = `(${total('off')}) - ((${number('off')}) / 100) * (${total('off')})`;
-				console.log(expression);
 			}
 		}
 
@@ -52,6 +51,14 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 		return expression;
 	}
 };
+
+export interface Parser {
+	evaluate: (expr: string) => any;
+	get: (variable: string) => any;
+	getAll: () => { [key: string]: any };
+	set: (variable: string, value: any) => void;
+	clear: () => void;
+}
 
 export {
 	mathParser
