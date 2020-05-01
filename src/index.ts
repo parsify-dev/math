@@ -52,14 +52,6 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 	}
 };
 
-export interface Parser {
-	evaluate: (expr: string) => any;
-	get: (variable: string) => any;
-	getAll: () => { [key: string]: any };
-	set: (variable: string, value: any) => void;
-	clear: () => void;
-}
-
 export {
 	mathParser
 };
