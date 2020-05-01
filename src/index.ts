@@ -26,15 +26,15 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			const number = (name: string) => expressionArray.slice(0, getElementIndex(expressionArray, name)).join(' ').replace('%', '');
 			const total = (name: string) => expressionArray.slice(getElementIndex(expressionArray, name) + 1).join(' ');
 
-			if (/of /.exec(expression)) {
+			if (/ of /.exec(expression)) {
 				expression = `((${number('of')}) / 100) * (${total('of')})`;
 			}
 
-			if (/on/i.exec(expression)) {
+			if (/ on /i.exec(expression)) {
 				expression = `(${total('on')}) + ((${number('on')}) / 100) * (${total('on')})`;
 			}
 
-			if (/off/i.exec(expression)) {
+			if (/ off /i.exec(expression)) {
 				expression = `(${total('off')}) - ((${number('off')}) / 100) * (${total('off')})`;
 			}
 		}
@@ -53,8 +53,8 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 };
 
 export interface Parser {
-	get(variable: string): any;
-	getAll(): { [key: string]: any; };
+	get: (variable: string) => any;
+	getAll: () => { [key: string]: any };
 	set: (variable: string, value: any) => void;
 }
 
