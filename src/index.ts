@@ -22,20 +22,22 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 
 		// Percentage operations
 		if (/ off? | on /.exec(expression)) {
+			let updatedExpression = '';
 			const expressionArray = expression.split(' ');
 			const number = (name: string) => expressionArray.slice(0, getElementIndex(expressionArray, name)).join(' ').replace('%', '');
 			const total = (name: string) => expressionArray.slice(getElementIndex(expressionArray, name) + 1).join(' ');
 
 			if (/ of /.exec(expression)) {
-				expression = `((${number('of')}) / 100) * (${total('of')})`;
+				updatedExpression = `((${number('of')}) / 100) * (${total('of')})`;
+			} else if (/ on /i.exec(expression)) {
+				updatedExpression = `(${total('on')}) + ((${number('on')}) / 100) * (${total('on')})`;
+			} else if (/ off /i.exec(expression)) {
+				updatedExpression = `(${total('off')}) - ((${number('off')}) / 100) * (${total('off')})`;
 			}
 
-			if (/ on /i.exec(expression)) {
-				expression = `(${total('on')}) + ((${number('on')}) / 100) * (${total('on')})`;
-			}
-
-			if (/ off /i.exec(expression)) {
-				expression = `(${total('off')}) - ((${number('off')}) / 100) * (${total('off')})`;
+			// Validate percentage operations
+			if (!await mathParser.evaluate(updatedExpression).toString().includes('*')) {
+				expression = updatedExpression;
 			}
 		}
 
