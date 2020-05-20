@@ -1,4 +1,4 @@
-import {parser, format, createUnit, UnitDefinition} from 'mathjs';
+import {parser, format, createUnit, UnitDefinition, Parser} from 'mathjs';
 
 import {getElementIndex} from './utils/get-element-index';
 
@@ -36,9 +36,11 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			}
 
 			// Validate percentage operations
-			if (!await mathParser.evaluate(updatedExpression).toString().includes('*')) {
-				expression = updatedExpression;
+			if (await mathParser.evaluate(updatedExpression).toString().includes('*')) {
+				updatedExpression = expression;
 			}
+
+			expression = updatedExpression;
 		}
 
 		if (customUnits) {
@@ -54,12 +56,7 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 	}
 };
 
-export interface Parser {
-	get: (variable: string) => any;
-	getAll: () => { [key: string]: any };
-	set: (variable: string, value: any) => void;
-}
-
 export {
-	mathParser
+	mathParser,
+	Parser
 };
