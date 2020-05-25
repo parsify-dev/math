@@ -49,7 +49,7 @@ test('subtracting percentage', async t => {
 });
 
 test('percentage operation validation', async t => {
-	t.is(await parsifyMathPlugin()('sin(population of california)'), 'sin(population of california)');
+	t.is(await parsifyMathPlugin()('sin("population of california")'), 'sin("population of california")');
 });
 
 test('additional options', async t => {
