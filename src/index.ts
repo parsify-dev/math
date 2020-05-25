@@ -36,11 +36,9 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			}
 
 			// Validate percentage operations
-			if (await mathParser.evaluate(updatedExpression).toString().includes('*')) {
-				updatedExpression = expression;
+			if (await mathParser.evaluate(updatedExpression).toString().includes('*') === false) {
+				expression = updatedExpression;
 			}
-
-			expression = updatedExpression;
 		}
 
 		if (customUnits) {
