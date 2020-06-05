@@ -47,9 +47,12 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 
 		const result = await mathParser.evaluate(expression);
 
-		return format(result, {precision});
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	} catch (error) {
+		return format(result, {
+			precision,
+			lowerExp: -20,
+			upperExp: 20
+		});
+	} catch {
 		return expression;
 	}
 };
