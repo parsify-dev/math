@@ -9,9 +9,10 @@ interface Options {
 	customUnits?: {
 		[name: string]: UnitDefinition;
 	};
+	experimental?: boolean;
 }
 
-export default ({precision = 4, customUnits}: Options = {}) => async (expression: string): Promise<string> => {
+export default ({precision = 4, customUnits, experimental = false}: Options = {}) => async (expression: string): Promise<string> => {
 	try {
 		// Replace word operators with sign ones
 		expression = expression.replace(/plus|and|with /, '+');
@@ -45,7 +46,19 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			createUnit(customUnits, {override: true});
 		}
 
-		const result = await mathParser.evaluate(expression);
+		let result: string | number;
+
+		if (experimental) {
+			try {
+				// eslint-disable-next-line @typescript-eslint/no-var-requires
+				const module = require('@parsify/evaluator');
+				result = module.evaluate(expression);
+			} catch {
+				result = await mathParser.evaluate(expression);
+			}
+		} else {
+			result = await mathParser.evaluate(expression);
+		}
 
 		return format(result, {
 			precision,

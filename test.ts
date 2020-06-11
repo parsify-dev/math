@@ -72,6 +72,11 @@ test('exports parser instance', async t => {
 	t.is(mathParser.get('x'), 3);
 });
 
+test('experimental parser', async t => {
+	t.is(await parsifyMathPlugin({experimental: true})('12+5'), '17');
+	t.is(await parsifyMathPlugin({experimental: true})('2 inch to cm'), '5.08 cm');
+});
+
 test('if an error occurs, just output the expression', async t => {
 	t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
 });
