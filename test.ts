@@ -74,5 +74,5 @@ test('experimental parser', async t => {
 });
 
 test('if an error occurs, just output the expression', async t => {
-	t.is(await parsifyMathPlugin()('foo / bar'), 'Calculation error');
+	t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
 });

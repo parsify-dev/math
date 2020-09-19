@@ -66,7 +66,7 @@ export default ({precision = 4, customUnits, experimental = false}: Options = {}
 			upperExp: 20
 		});
 	} catch {
-		return 'Calculation error';
+		return expression;
 	}
 };
 
