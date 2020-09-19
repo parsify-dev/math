@@ -48,10 +48,6 @@ test('subtracting percentage', async t => {
 	t.is(await parsifyMathPlugin()('6% off 40 + pi'), '40.55');
 });
 
-test('percentage operation validation', async t => {
-	t.is(await parsifyMathPlugin()('sin("population of california")'), 'sin("population of california")');
-});
-
 test('additional options', async t => {
 	const result = await parsifyMathPlugin({
 		precision: 16,
@@ -78,5 +74,5 @@ test('experimental parser', async t => {
 });
 
 test('if an error occurs, just output the expression', async t => {
-	t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
+	t.is(await parsifyMathPlugin()('foo / bar'), 'Calculation error');
 });
