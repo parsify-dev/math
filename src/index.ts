@@ -60,7 +60,11 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			lowerExp: -20,
 			upperExp: 20
 		});
-	} catch {
+	} catch (error) {
+		if (process.env.DEBUG) {
+			return error.message;
+		}
+
 		return expression;
 	}
 };
