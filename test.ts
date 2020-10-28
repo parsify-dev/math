@@ -62,6 +62,16 @@ test('additional options', async t => {
 	t.is(result, '39.10396466865198 knots');
 });
 
+test('precision check', async t => {
+	const result1 = await parsifyMathPlugin({precision: 6})('pi');
+	const result2 = await parsifyMathPlugin({precision: 2})('pi');
+	const result3 = await parsifyMathPlugin({precision: 10})('pi');
+
+	t.is(result1, '3.14159');
+	t.is(result2, '3.1');
+	t.is(result3, '3.141592654');
+});
+
 test('exports parser instance', async t => {
 	await parsifyMathPlugin()('x=3');
 
@@ -70,4 +80,9 @@ test('exports parser instance', async t => {
 
 test('if an error occurs, just output the expression', async t => {
 	t.is(await parsifyMathPlugin()('foo / bar'), 'foo / bar');
+});
+
+test('DEBUG flag', async t => {
+	process.env.DEBUG = 'true';
+	t.is(await parsifyMathPlugin()('foo / bar'), 'Undefined symbol foo');
 });
