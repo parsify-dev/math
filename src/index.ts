@@ -6,9 +6,7 @@ const mathParser = parser();
 
 interface Options {
 	precision?: number;
-	customUnits?: {
-		[name: string]: UnitDefinition;
-	};
+	customUnits?: Record<string, UnitDefinition>;
 }
 
 export default ({precision = 4, customUnits}: Options = {}) => async (expression: string): Promise<string> => {
@@ -60,7 +58,8 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			lowerExp: -20,
 			upperExp: 20
 		});
-	} catch (error) {
+		// eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
+	} catch (error: any) {
 		if (process.env.DEBUG) {
 			return error.message;
 		}
