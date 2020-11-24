@@ -1,6 +1,6 @@
 {
     "name": "@parsify/math",
-    "version": "0.8.1",
+    "version": "0.9.0",
     "description": "Parsify plugin for mathematical expressions & unit conversions",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -40,18 +40,18 @@
     ],
     "devDependencies": {
         "@akepinski/tsconfig": "0.0.2",
-        "@types/mathjs": "^6.0.6",
-        "@typescript-eslint/eslint-plugin": "^4.6.0",
-        "@typescript-eslint/parser": "^4.6.0",
+        "@types/mathjs": "^6.0.7",
+        "@typescript-eslint/eslint-plugin": "^4.8.2",
+        "@typescript-eslint/parser": "^4.8.2",
         "ava": "^3.13.0",
         "coveralls": "^3.1.0",
         "cpy-cli": "^3.1.1",
         "del-cli": "^3.0.1",
-        "eslint-config-xo-typescript": "^0.35.0",
+        "eslint-config-xo-typescript": "^0.36.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.0.0",
-        "typescript": "^4.0.5",
-        "xo": "^0.34.1"
+        "typescript": "^4.1.2",
+        "xo": "^0.35.0"
     },
     "sideEffects": false,
     "ava": {
@@ -76,7 +76,6 @@
         }
     },
     "dependencies": {
-        "@parsify/evaluator": "0.0.1",
-        "mathjs": "^7.5.1"
+        "mathjs": "^8.0.1"
     }
 }

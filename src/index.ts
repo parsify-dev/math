@@ -43,18 +43,9 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			createUnit(customUnits, {override: true});
 		}
 
-		let result: string | number;
-
-		try {
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			const module = require('@parsify/evaluator');
-			result = module.evaluate(expression);
-		} catch {
-			result = await mathParser.evaluate(expression);
-		}
-
-		return format(result, {
+		return format(await mathParser.evaluate(expression), {
 			precision,
+			fraction: 'decimal',
 			lowerExp: -20,
 			upperExp: 20
 		});
