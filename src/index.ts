@@ -43,11 +43,10 @@ export default ({precision = 4, customUnits}: Options = {}) => async (expression
 			createUnit(customUnits, {override: true});
 		}
 
-		return format(await mathParser.evaluate(expression), {
-			precision,
-			fraction: 'decimal',
-			lowerExp: -20,
-			upperExp: 20
+		return format(await mathParser.evaluate(expression), number => {
+			return number.toLocaleString('en-US', {
+				maximumFractionDigits: precision
+			});
 		});
 		// eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
 	} catch (error: any) {

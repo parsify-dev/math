@@ -25,14 +25,14 @@ test('word operators', async t => {
 
 test('units', async t => {
 	t.is(await parsifyMathPlugin()('2 inch to cm'), '5.08 cm');
-	t.is(await parsifyMathPlugin()('10 kilograms to g'), '10000 g');
-	t.is(await parsifyMathPlugin()('15 cm to inch'), '5.906 inch');
+	t.is(await parsifyMathPlugin()('10 kilograms to g'), '10,000 g');
+	t.is(await parsifyMathPlugin()('15 cm to inch'), '5.9055 inch');
 	t.is(await parsifyMathPlugin()('12 hours to minutes'), '720 minutes');
 });
 
 test('percentage value', async t => {
 	t.is(await parsifyMathPlugin()('5% of 100'), '5');
-	t.is(await parsifyMathPlugin()('(5 / 2)% of sin(2)'), '0.02273');
+	t.is(await parsifyMathPlugin()('(5 / 2)% of sin(2)'), '0.0227');
 	t.is(await parsifyMathPlugin()('5% of 100 * 5'), '25');
 });
 
@@ -44,8 +44,8 @@ test('adding percentage', async t => {
 
 test('subtracting percentage', async t => {
 	t.is(await parsifyMathPlugin()('6% off 40'), '37.6');
-	t.is(await parsifyMathPlugin()('tan(6)% off 40/2'), '20.06');
-	t.is(await parsifyMathPlugin()('6% off 40 + pi'), '40.55');
+	t.is(await parsifyMathPlugin()('tan(6)% off 40/2'), '20.0582');
+	t.is(await parsifyMathPlugin()('6% off 40 + pi'), '40.5531');
 });
 
 test('additional options', async t => {
@@ -59,7 +59,7 @@ test('additional options', async t => {
 		}
 	})('45 mile/hour to knots');
 
-	t.is(result, '39.10396466865198 knots');
+	t.is(result, '39.103964668651976 knots');
 });
 
 test('precision check', async t => {
@@ -67,9 +67,9 @@ test('precision check', async t => {
 	const result2 = await parsifyMathPlugin({precision: 2})('pi');
 	const result3 = await parsifyMathPlugin({precision: 10})('pi');
 
-	t.is(result1, '3.14159');
-	t.is(result2, '3.1');
-	t.is(result3, '3.141592654');
+	t.is(result1, '3.141593');
+	t.is(result2, '3.14');
+	t.is(result3, '3.1415926536');
 });
 
 test('exports parser instance', async t => {
